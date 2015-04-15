@@ -398,8 +398,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 20, y: 57}
-  m_SizeDelta: {x: 371, y: 58}
+  m_AnchoredPosition: {x: 0, y: 76}
+  m_SizeDelta: {x: 331, y: 62}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &689525118
 MonoBehaviour:
@@ -465,7 +465,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -216.100006, y: .100006104}
+  m_AnchoredPosition: {x: -96, y: -31}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &758595405
@@ -585,7 +585,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -100, y: -19.5}
+  m_AnchoredPosition: {x: -73, y: -12}
   m_SizeDelta: {x: 109, y: 39}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &770095898
@@ -705,8 +705,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -219.700012, y: -70.8999939}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -114, y: -82}
+  m_SizeDelta: {x: 125, y: 34}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &823236764
 MonoBehaviour:
@@ -1012,7 +1012,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 151, y: -20}
+  m_AnchoredPosition: {x: 82, y: -12}
   m_SizeDelta: {x: 109, y: 39}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1501462330
@@ -1158,8 +1158,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 20, y: 29}
-  m_SizeDelta: {x: 406, y: 174}
+  m_AnchoredPosition: {x: 0, y: 38}
+  m_SizeDelta: {x: 331, y: 191}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &1569719986
 GameObject:
@@ -1188,8 +1188,6 @@ MonoBehaviour:
   m_Script: {fileID: 762677091, guid: eb3a448fb913d784ea46ee16b4ab16bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applicationID: Ss2KJD8gwNYOglXROjO69xvKABkKfatxszr56mF5
-  dotnetKey: yeCEse0I4qi7wdoQjSn221oFDmeEK1apdvxaeU6D
 --- !u!4 &1569719988
 Transform:
   m_ObjectHideFlags: 0
