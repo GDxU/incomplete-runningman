@@ -92,7 +92,8 @@ public class normalwalk2 : MonoBehaviour
 		Quaternion targetRot = Quaternion.LookRotation (myForward, myNormal);
 		myTransform.rotation = Quaternion.Lerp (myTransform.rotation, targetRot, lerpSpeed * Time.deltaTime);
 		// move the character forth/back with Vertical axis:
-		myTransform.Translate (0, 0, getControlSpeedNow () * Input.GetAxis ("Vertical") * moveSpeed * Time.deltaTime);
+		myTransform.Translate (0, 0, getControlSpeedNow () * moveSpeed * Time.deltaTime);
+		//Input.GetAxis ("Vertical") 
 	}
 	
 	private void JumpToWall (Vector3 point, Vector3 normal)

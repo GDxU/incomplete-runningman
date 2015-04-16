@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+[RequireComponent (typeof(PlayerHealth))]
 [RequireComponent (typeof(normalwalk2))]
 public class GameControl : MonoBehaviour
 {	
@@ -12,28 +12,33 @@ public class GameControl : MonoBehaviour
 	public float bartemp;
 	public float downPressure;
 	public float upSpeedPress;
-	public bool rOn = false, lOn = false;
+	//[HideInInspector]
+	private bool rOn = false, lOn = false;
 	private float percentage;
 	public normalwalk2 tmp;
+	public PlayerHealth hb;
 
 	public void rightHit ()
 	{
 		if (rOn) {
-			bartemp += upSpeedPress;
+			//	bartemp += upSpeedPress;
 			rOn = false;
 			lOn = true;
-			upSpeedPress += 0.1f;
+			bartemp += 2f;
 		}
 	}
 
 	public void leftHit ()
 	{
 		if (lOn) {
-			bartemp += upSpeedPress;
+			//bartemp += upSpeedPress;
 			rOn = true;
 			lOn = false;
-			upSpeedPress += 0.1f;
+			bartemp += 2f;
 		}
+	}
+	void Awake(){
+	
 	}
 	// Use this for initialization
 	void Start ()
@@ -42,6 +47,7 @@ public class GameControl : MonoBehaviour
 //		startText = startText.GetComponent<Button> ();
 //		exitText = exitText.GetComponent<Button> ();
 		tmp = this.GetComponent<normalwalk2> ();
+		hb = this.GetComponent<PlayerHealth> ();
 		upSpeedPress = 0;
 		rOn = true;
 	}
@@ -49,10 +55,15 @@ public class GameControl : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		percentage = bartemp / maxLimit;
-		tmp.setExternalSpeedCurrent (bartemp);
-		if (bartemp > 0) {
-			bartemp-=0.01f;
+		if (bartemp > maxLimit) {
+			bartemp = maxLimit;
 		}
+		percentage = bartemp / maxLimit;
+		tmp.setExternalSpeedCurrent (percentage);
+		if (bartemp > 0) {
+			bartemp -= percentage * 0.1f;
+		}
+		int b = (int)(percentage * 100);
+		hb.setVal (b);
 	}
 }
