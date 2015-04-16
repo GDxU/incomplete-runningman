@@ -38,12 +38,9 @@ public class GameControl : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-
 //		quitMenu = quitMenu.GetComponent<Canvas> ();
 //		startText = startText.GetComponent<Button> ();
 //		exitText = exitText.GetComponent<Button> ();
-
-
 		tmp = this.GetComponent<normalwalk2> ();
 		upSpeedPress = 0;
 		rOn = true;
@@ -53,5 +50,9 @@ public class GameControl : MonoBehaviour
 	void Update ()
 	{
 		percentage = bartemp / maxLimit;
+		tmp.setExternalSpeedCurrent (bartemp);
+		if (bartemp > 0) {
+			bartemp-=0.01f;
+		}
 	}
 }
