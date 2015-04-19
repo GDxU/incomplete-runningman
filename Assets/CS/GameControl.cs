@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+
 [RequireComponent (typeof(PlayerHealth))]
 [RequireComponent (typeof(normalwalk2))]
 public class GameControl : MonoBehaviour
@@ -12,6 +13,8 @@ public class GameControl : MonoBehaviour
 	public float bartemp;
 	public float downPressure;
 	public float upSpeedPress;
+	public float threadhold = 0.1f;
+	public float real_move_system = 1f;
 	//[HideInInspector]
 	private bool rOn = false, lOn = false;
 	private float percentage;
@@ -37,7 +40,9 @@ public class GameControl : MonoBehaviour
 			bartemp += 2f;
 		}
 	}
-	void Awake(){
+
+	void Awake ()
+	{
 	
 	}
 	// Use this for initialization
@@ -59,9 +64,9 @@ public class GameControl : MonoBehaviour
 			bartemp = maxLimit;
 		}
 		percentage = bartemp / maxLimit;
-		tmp.setExternalSpeedCurrent (percentage);
+		tmp.setExternalSpeedCurrent (percentage*real_move_system);
 		if (bartemp > 0) {
-			bartemp -= percentage * 0.1f;
+			bartemp -= percentage * threadhold;
 		}
 		int b = (int)(percentage * 100);
 		hb.setVal (b);
