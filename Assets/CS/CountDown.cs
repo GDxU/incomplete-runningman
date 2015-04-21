@@ -2,35 +2,43 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class CountDown : MonoBehaviour {
+public class CountDown : MonoBehaviour
+{
 	
-	public float timeRemaining = 60f;
-	public Text countdown;
-	void Start()
+	public int timeRemaining = 60;
+	public Text countdown, score;
+	public GameControl thecontrol;
+
+	void Start ()
 	{
-		countdown  = countdown.GetComponent<Text>();
-	//	InvokeRepeating("decreaseTimeRemaining", 1.0, 1.0);
+		thecontrol = this.GetComponent<GameControl> ();
+		//countdown = countdown.GetComponent<Text> ();
+		InvokeRepeating ("decreaseTimeRemaining", 1.0F, 1.0F);
 	}
 	
-	void Update()
+	void Update ()
 	{
-		if (timeRemaining == 0)
-		{
-			//sendMessageUpward("timeElapsed");
+		score.text = thecontrol.getScore () + "";
+		if (timeRemaining == 0) {
+			SendMessageUpwards ("timeElapsed");
+			timeElapsed ();
+		} else {
+			countdown.text = timeRemaining + "";
 		}
-		
-		//GuiText.text = timeRemaining + " Seconds remaining!";
-		countdown.text = timeRemaining + " Seconds remaining!";
 	}
 	
-	void decreaseTimeRemaining()
+	void decreaseTimeRemaining ()
 	{
 		timeRemaining --;
 	}
 	
 	//may not be needed, left it in there
-	void timeElapsed()
-	{}
+	void timeElapsed ()
+	{
+		CancelInvoke ("decreaseTimeRemaining");
+		thecontrol.StopControl ();
+		countdown.text = "-0-";
+	}
 }
 
 

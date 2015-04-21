@@ -20,25 +20,35 @@ public class GameControl : MonoBehaviour
 	private float percentage;
 	public normalwalk2 tmp;
 	public PlayerHealth hb;
+	private bool controlable;
+	public GameObject gameoverbutton;
+	private int score;
 
 	public void rightHit ()
 	{
-		if (rOn) {
+		if (rOn && controlable) {
 			//	bartemp += upSpeedPress;
 			rOn = false;
 			lOn = true;
 			bartemp += 2f;
+			score += (int)bartemp;
 		}
 	}
 
 	public void leftHit ()
 	{
-		if (lOn) {
+		if (lOn && controlable) {
 			//bartemp += upSpeedPress;
 			rOn = true;
 			lOn = false;
 			bartemp += 2f;
+			score += (int)bartemp;
 		}
+	}
+
+	public int getScore ()
+	{
+		return score;
 	}
 
 	void Awake ()
@@ -54,21 +64,45 @@ public class GameControl : MonoBehaviour
 		tmp = this.GetComponent<normalwalk2> ();
 		hb = this.GetComponent<PlayerHealth> ();
 		upSpeedPress = 0;
+		score = 0;
 		rOn = true;
+		controlable = true;
 	}
-	
+
+	public void StopControl ()
+	{
+		controlable = false;
+		gameoverbutton.SetActive (true);
+	}
+
+	private void keyboard ()
+	{
+		if (controlable) {
+			if (Input.GetButtonDown ("Fire1")) {
+				leftHit ();
+			} else if (Input.GetButtonDown ("Fire2")) {
+				rightHit ();
+			}
+		}
+	}
 	// Update is called once per frame
 	void Update ()
 	{
+		keyboard ();
 		if (bartemp > maxLimit) {
 			bartemp = maxLimit;
 		}
 		percentage = bartemp / maxLimit;
-		tmp.setExternalSpeedCurrent (percentage*real_move_system);
+		tmp.setExternalSpeedCurrent (percentage * real_move_system);
 		if (bartemp > 0) {
 			bartemp -= percentage * threadhold;
 		}
 		int b = (int)(percentage * 100);
 		hb.setVal (b);
+	}
+
+	public void exitGame ()
+	{
+		Application.LoadLevel (0);
 	}
 }
