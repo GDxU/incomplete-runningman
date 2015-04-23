@@ -35,8 +35,6 @@ public class Locator : MonoBehaviour
 				Instantiate(fab, hit.point, Quaternion.LookRotation(getNormal(fab)));
 			}
 		}
-
-
 	}
 	// Update is called once per frame
 	void Update ()

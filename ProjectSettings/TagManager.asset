@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Mobile
   - PC
+  - locationholder
+  - property
+  - building
+  - floatingfireball
+  - Ground
   layers:
   - Default
   - TransparentFX
