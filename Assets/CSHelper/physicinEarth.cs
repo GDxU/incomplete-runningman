@@ -6,6 +6,7 @@ public class physicinEarth : MonoBehaviour
 	private GameObject mground;
 	private Vector3 theEarth;
 	private Vector3 surfaceNormal; // current surface normal
+	public Vector3 scale_set;
 	//public float radius;
 	// Use this for initialization
 	public Quaternion rotOffSet;
@@ -23,19 +24,15 @@ public class physicinEarth : MonoBehaviour
 
 	private void basic ()
 	{
+		//scale_set = new Vector3(.001f,.006f,.001f);
 		Quaternion currentRot = GetComponent<Transform> ().localRotation;
+		//GetComponent<Transform> ().localScale = scale_set;
 		now = GetComponent<Transform> ().position;
 		theEarth = GameObject.FindGameObjectWithTag ("Ground").transform.position;
-		//GetComponent<Transform> ().LookAt(theEarth);
 		Ray ray;
 		RaycastHit hit;
 		ray = new Ray (now, getNormal ());
 		if (Physics.Raycast (ray, out hit, 500)) { // wall ahead?
-			//				JumpToWall (hit.point, hit.normal); // yes: jump to the wall
-			//			} else if (isGrounded) { // no: if grounded, jump up
-			//				GetComponent<Rigidbody> ().velocity += jumpSpeed * myNormal;
-			//Instantiate (fab, hit.point, Quaternion.LookRotation (getNormal (fab)));
-
 			GetComponent<Transform> ().position = hit.point;
 		}
 		//GetComponent<Transform> ().rotation = Quaternion.Euler (getNormal ());

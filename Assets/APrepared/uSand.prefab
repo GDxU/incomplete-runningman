@@ -29,10 +29,9 @@ GameObject:
   - 23: {fileID: 2397660}
   - 64: {fileID: 6439426}
   - 82: {fileID: 8270864}
-  - 114: {fileID: 11430218}
   m_Layer: 0
-  m_Name: fireSand
-  m_TagString: floatingfireball
+  m_Name: uSand
+  m_TagString: building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,9 +76,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145216}
-  m_LocalRotation: {x: .849605262, y: .398153305, z: -.296024352, w: .178925678}
+  m_LocalRotation: {x: .5, y: .5, z: -.500000119, w: .49999994}
   m_LocalPosition: {x: -.0536400005, y: -.487839997, z: .101779997}
-  m_LocalScale: {x: 1.88107442e-05, y: 3.13671335e-05, z: 1.88107406e-05}
+  m_LocalScale: {x: .100000001, y: 1, z: .100000001}
   m_Children:
   - {fileID: 428240}
   m_Father: {fileID: 0}
@@ -104,7 +103,7 @@ Transform:
   m_GameObject: {fileID: 151370}
   m_LocalRotation: {x: -.707106829, y: 1.117587e-08, z: 0, w: .707106829}
   m_LocalPosition: {x: .5, y: -8.06999969, z: -2.5999999}
-  m_LocalScale: {x: 1.73614788, y: 1.73614728, z: 1.0411607}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 440978}
   - {fileID: 427520}
@@ -234,18 +233,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &11430218
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3791ee282781854479644dda51368bf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotOffSet: {x: 0, y: 0, z: 0, w: 0}
 --- !u!198 &19823416
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -32,7 +32,7 @@ public class Locator : MonoBehaviour
 //				JumpToWall (hit.point, hit.normal); // yes: jump to the wall
 //			} else if (isGrounded) { // no: if grounded, jump up
 //				GetComponent<Rigidbody> ().velocity += jumpSpeed * myNormal;
-				Instantiate(fab, hit.point, Quaternion.LookRotation(getNormal(fab)));
+			//	Instantiate(fab, hit.point, Quaternion.LookRotation(getNormal(fab)));
 			}
 		}
 	}
