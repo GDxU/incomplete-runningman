@@ -95,7 +95,22 @@ public class normalwalk2 : MonoBehaviour
 		myTransform.Translate (0, 0, getControlSpeedNow () * moveSpeed * Time.deltaTime);
 		//Input.GetAxis ("Vertical") 
 	}
-	
+
+	public void exploreFrom (Vector3 point, Vector3 normal, float distance)
+	{
+		// jump to wall
+		jumping = true; // signal it's jumping to wall
+		GetComponent<Rigidbody> ().isKinematic = true; // disable physics while jumping
+		Vector3 orgPos = myTransform.position;
+		Quaternion orgRot = myTransform.rotation;
+		Vector3 dstPos = point + myTransform.up * (distGround + distance); // will jump to 0.5 above wall
+		Vector3 myForward = Vector3.Cross (myTransform.right, normal);
+		Quaternion dstRot = Quaternion.LookRotation (myForward, normal);
+		
+		StartCoroutine (jumpTime (orgPos, orgRot, dstPos, dstRot, myTransform.up));
+		//jumptime
+	}
+
 	private void JumpToWall (Vector3 point, Vector3 normal)
 	{
 		// jump to wall

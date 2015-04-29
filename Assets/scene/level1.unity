@@ -100,6 +100,8 @@ GameObject:
   - 124: {fileID: 81053708}
   - 92: {fileID: 81053707}
   - 81: {fileID: 81053706}
+  - 114: {fileID: 81053713}
+  - 114: {fileID: 81053711}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -170,12 +172,62 @@ Transform:
   m_PrefabParentObject: {fileID: 402384, guid: 0490751a18996344bae86f46e5a2a704, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 81053705}
-  m_LocalRotation: {x: .208227545, y: -1.03620279e-09, z: 2.89577624e-08, w: .978080451}
-  m_LocalPosition: {x: .0299999993, y: 1.83700001, z: -2.375}
-  m_LocalScale: {x: 57383.6523, y: 1, z: 1}
+  m_LocalRotation: {x: .539399207, y: .457717657, z: -.53626889, w: .460389823}
+  m_LocalPosition: {x: 1.2598635, y: 53.5893898, z: -.502398074}
+  m_LocalScale: {x: 57383.6562, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1024808907}
-  m_RootOrder: 3
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+--- !u!114 &81053711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 81053705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5daf136518155fb4aa96db7bee9b2c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentRig: {fileID: 81053710}
+  distanceAway: 2.61999989
+  distanceAwayMultipler: 1.5
+  distanceUp: .649999976
+  surroundDisUp: 2.8599999
+  distanceUpMultiplier: 5
+  follow: {fileID: 1024808917}
+  followXform: {fileID: 1024808907}
+  widescreen: .200000003
+  targetingTime: .5
+  firstPersonLookSpeed: 3
+  firstPersonXAxisClamp: {x: -70, y: 90}
+  fPSRotationDegreePerSecond: 120
+  firstPersonThreshold: .5
+  freeThreshold: -.100000001
+  camMinDistFromChar: {x: 1, y: -.5}
+  rightStickThreshold: .100000001
+  isTargeted: 0
+  exit_fpv: 0
+  camSmoothDampTime: .100000001
+  firstPersonDampTime: .100000001
+  lookDirDampTime: .100000001
+  firstPersonCameraPos: {x: 0, y: 0, z: 0}
+  camState: 2
+  surroundSpeed: .5
+--- !u!114 &81053713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 81053705}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8891d133b6d44045a6e76cf5894e931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: d843cea39eb53424b9eb9981ace48fe7, type: 3}
+  coverage: .100000001
+  barTexture: {fileID: 2800000, guid: 3b3da344e8cc24177933252ce9dcb5e6, type: 3}
 --- !u!1 &173978895
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +318,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 250509072}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: camPos3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1475,7 +1527,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &512995779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1665,7 +1717,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 556988082}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: camPos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2909,9 +2961,14 @@ MonoBehaviour:
   angleControl: 90
   minDistance: 50
   maxDistance: 55.5
-  objectCountMin: 10
-  objectCountMax: 100
-  fab: {fileID: 145216, guid: fe95dd6d26043d548b9126c198bc45a4, type: 2}
+  surfaceDistanceRadius: 49.7999992
+  fab:
+  - itemPrefab: {fileID: 117134, guid: e431ff5a507d7034383aec1bb222227f, type: 2}
+    randomCounts: 100
+    justOnSurface: 1
+  - itemPrefab: {fileID: 145216, guid: fe95dd6d26043d548b9126c198bc45a4, type: 2}
+    randomCounts: 20
+    justOnSurface: 0
 --- !u!135 &848567766
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2969,7 +3026,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &864243860
 GameObject:
   m_ObjectHideFlags: 0
@@ -3144,7 +3201,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &940984315
 GameObject:
   m_ObjectHideFlags: 0
@@ -3154,7 +3211,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 940984316}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: camPos4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3250,6 +3307,7 @@ GameObject:
   - 114: {fileID: 1024808911}
   - 114: {fileID: 1024808915}
   - 114: {fileID: 1024808916}
+  - 114: {fileID: 1024808917}
   m_Layer: 0
   m_Name: BA07CRUSIE.G
   m_TagString: Player
@@ -3270,9 +3328,8 @@ Transform:
   - {fileID: 419723490}
   - {fileID: 1844771054}
   - {fileID: 457916679}
-  - {fileID: 81053710}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &1024808908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3478,6 +3535,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2ce72e287b02741b2284bd29b5294b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1024808917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024808906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4cf7597959730418190bf747b4317f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  gamecam: {fileID: 81053711}
+  rotationDegreePerSecond: 120
+  directionSpeed: 1.5
+  directionDampTime: .25
+  speedDampTime: .0500000007
+  fovDampTime: 3
+  jumpMultiplier: 1
+  capCollider: {fileID: 0}
+  jumpDist: 1
+  sprint: 1
 --- !u!1 &1126813829
 GameObject:
   m_ObjectHideFlags: 0
@@ -3550,7 +3629,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &1247597019
 GameObject:
   m_ObjectHideFlags: 0
@@ -3610,7 +3689,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &1405606456
 GameObject:
   m_ObjectHideFlags: 0
@@ -3642,7 +3721,7 @@ RectTransform:
   - {fileID: 671689824}
   - {fileID: 288643446}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -3711,7 +3790,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1409140925}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: camPos1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -18,14 +18,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 468acd4d066b0734c866f161e6ef1da0, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _NormalMap
         second:
-          m_Texture: {fileID: 2800000, guid: a9f58ea590598f949a344effe1fcba31, type: 3}
+          m_Texture: {fileID: 2800000, guid: b7612627fe2834a45abd0dcf8c02cda8, type: 3}
           m_Scale: {x: 3, y: 3}
           m_Offset: {x: 0, y: 0}
       data:
@@ -39,21 +39,21 @@ Material:
         first:
           name: _MetalMap
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 02e327dd7467d441cad48180b9cd1f0f, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _RSRM
         second:
-          m_Texture: {fileID: 2800000, guid: 944e8e0b6dd0b90428d285d60d275efa, type: 3}
+          m_Texture: {fileID: 2800000, guid: 038f28ef00a6b014b9e2af61ab2279b7, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _CoatMap
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: f556ac1fff90b504d8a8d6cca2c47706, type: 3}
           m_Scale: {x: 6, y: 6}
           m_Offset: {x: 0, y: 0}
       data:
@@ -111,7 +111,7 @@ Material:
       data:
         first:
           name: _MainColor
-        second: {r: 1, g: .668523669, b: 0, a: .501960814}
+        second: {r: .375, g: .341182113, b: .272977948, a: .501960814}
       data:
         first:
           name: _LocalColor

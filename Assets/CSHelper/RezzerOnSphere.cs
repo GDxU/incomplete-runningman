@@ -1,41 +1,56 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class itemConf
+{
+	public GameObject itemPrefab;
+	public int randomCounts;
+	public bool justOnSurface = false;
+}
 
 public class RezzerOnSphere : MonoBehaviour
-{
+{  
 
-	public float angleControl = 90F, minDistance, maxDistance;
-	public int objectCountMin, objectCountMax;
-	public GameObject fab;
+	public float angleControl = 90F, minDistance, maxDistance, surfaceDistanceRadius;
+	//public int objectCountMin, objectCountMax;
+	[SerializeField]
+	public List<itemConf>
+		fab = new List<itemConf> (1);
+
+
 	// Use this for initialization
 	void Start ()
 	{
-		if (objectCountMin > objectCountMax) {
-			Debug.LogError ("objectCountMin needs to be smaller than objectCountMax");
+//		if (objectCountMin > objectCountMax) {
+//			Debug.LogError ("objectCountMin needs to be smaller than objectCountMax");
+//			return;
+//		}
+//		if (objectCountMax < 1) {
+//			Debug.LogError ("objectCountMax needs to be bigger than zero;");
+//			return;
+//		}
+		if(surfaceDistanceRadius == null){
+			Debug.LogError ("surfaceDistanceRadius needs to be bigger than zero;");
 			return;
 		}
-		if (objectCountMax < 1) {
-			Debug.LogError ("objectCountMax needs to be bigger than zero;");
-			return;
-		}
-		for (int i = 0; i<50; i++) {
-			// Vector3 V = GetPointOnUnitSphereCap (transform.rotation, angleControl);
-			Vector3 V = GenerateRandomPos ();
-			// Debug.DrawRay (transform.position, V, Color.red);
-			if (fab != null) {
-				Quaternion rot = Quaternion.Euler (getNormal (V)); 
-				//* Vector3.up;
-
-				GameObject openobject = Instantiate (fab, V, Quaternion.identity) as GameObject;
-				//Quaternion currentRot = T.localRotation;
-				openobject.transform.rotation = Quaternion.FromToRotation (-openobject.transform.up, getNormal (V)) * openobject.transform.rotation;
-				//T.transform.rotation = Quaternion.Euler (getNormal (V)) * -T.transform.up;
-				//Quaternion.LookRotation(Vector3.up * getNormal(V)
-				//openobject.transform.LookAt (getNormal (V));
-				openobject.transform.parent = GameObject.FindGameObjectWithTag ("Ground").transform;
-				//T.transform.TransformPoint (Quaternion.Euler (getNormal (V)) * Vector3.up);
+		for (int h = 0; h<fab.Count; h++) {
+			itemConf item = fab [h];
+			for (int i = 0; i<item.randomCounts; i++) {
+				rez (item.itemPrefab, item.justOnSurface);
 			}
 		}
+	}
+
+	protected void rez (GameObject prefab, bool on)
+	{
+		Vector3 V = GenerateRandomPos (on);
+		Quaternion rot = Quaternion.Euler (getNormal (V)); 
+		GameObject openobject = Instantiate (prefab, V, Quaternion.identity) as GameObject;
+		openobject.transform.rotation = Quaternion.FromToRotation (-openobject.transform.up, getNormal (V)) * openobject.transform.rotation;
+		openobject.transform.parent = GameObject.FindGameObjectWithTag ("Ground").transform;
 	}
 
 	public Vector3 getNormal (Vector3 vpos)
@@ -52,9 +67,11 @@ public class RezzerOnSphere : MonoBehaviour
 
 	}
 
-	public Vector3 GenerateRandomPos ()
+	public Vector3 GenerateRandomPos (bool onSurface)
 	{
-		Vector3 newPos = Random.onUnitSphere * Random.Range (minDistance, maxDistance);
+
+		float onSurfaceDistance = onSurface ? surfaceDistanceRadius : Random.Range (minDistance, maxDistance);
+		Vector3 newPos = Random.onUnitSphere * onSurfaceDistance;
 		// newPos.y = originalPos.y;
 		return newPos;
 	}
