@@ -29,7 +29,10 @@ public class normalwalk2 : MonoBehaviour
 	private float external_control_speed = 1f;
 	private Transform myTransform;
 	public BoxCollider boxCollider; // drag BoxCollider ref in editor
-	
+	#region Properties (public)
+	public bool IsJump(){  return this.jumping || !this.isGrounded; }
+	public Vector3 getNormal(){ return this.surfaceNormal; }
+	#endregion
 	private void Start ()
 	{
 		myNormal = transform.up; // normal starts as character up direction

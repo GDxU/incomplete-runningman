@@ -2,8 +2,6 @@
 using UnityEngine.UI;
 using System.Collections;
 
-[RequireComponent (typeof(PlayerHealth))]
-[RequireComponent (typeof(normalwalk2))]
 public class GameControl : MonoBehaviour
 {	
 	public Canvas quitMenu;
@@ -16,13 +14,12 @@ public class GameControl : MonoBehaviour
 	public float threadhold = 0.1f;
 	public float real_move_system = 1f;
 	//[HideInInspector]
-	private bool rOn = false, lOn = false;
+	private bool controlable;
 	private float percentage;
 	public normalwalk2 tmp;
 	public PlayerHealth hb;
-	private bool controlable;
 	public GameObject gameoverbutton;
-	private int score;
+	private int score, incremental;
 
 	//http://stackoverflow.com/questions/19675676/calculating-actual-angle-between-two-vectors-in-unity3d
 	public float SignedAngleBetween (Vector3 a, Vector3 b, Vector3 n)
@@ -42,10 +39,8 @@ public class GameControl : MonoBehaviour
 
 	public void rightHit ()
 	{
-		if (rOn && controlable) {
-			//	bartemp += upSpeedPress;
-			rOn = false;
-			lOn = true;
+		if (incremental % 2 == 0 && controlable) {
+			incremental++;
 			bartemp += 2f;
 			score += (int)bartemp;
 		}
@@ -53,10 +48,8 @@ public class GameControl : MonoBehaviour
 
 	public void leftHit ()
 	{
-		if (lOn && controlable) {
-			//bartemp += upSpeedPress;
-			rOn = true;
-			lOn = false;
+		if (incremental % 2 == 1 && controlable) {
+			incremental++;
 			bartemp += 2f;
 			score += (int)bartemp;
 		}
@@ -69,7 +62,7 @@ public class GameControl : MonoBehaviour
 
 	void Awake ()
 	{
-	
+
 	}
 	// Use this for initialization
 	void Start ()
@@ -77,11 +70,11 @@ public class GameControl : MonoBehaviour
 //		quitMenu = quitMenu.GetComponent<Canvas> ();
 //		startText = startText.GetComponent<Button> ();
 //		exitText = exitText.GetComponent<Button> ();
-		tmp = this.GetComponent<normalwalk2> ();
-		hb = this.GetComponent<PlayerHealth> ();
+		//tmp = this.GetComponent<normalwalk2> ();
+		//hb = this.GetComponent<PlayerHealth> ();
 		upSpeedPress = 0;
 		score = 0;
-		rOn = true;
+		incremental = 0;
 		controlable = true;
 	}
 

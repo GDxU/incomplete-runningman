@@ -49,7 +49,6 @@ struct CameraPosition
 					}
 				}
 			}
-							
 		}
 		//Transform transform = GameObject.Find (paren_name_go + "/" + camName) as Transform;
 		//position = transform.position;
