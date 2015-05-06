@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+using UnityEngine.SocialPlatforms;
 public class GameControl : MonoBehaviour
 {	
 	public Canvas quitMenu;
@@ -80,6 +80,10 @@ public class GameControl : MonoBehaviour
 
 	public void StopControl ()
 	{
+
+		// Select the Google Play Games platform as our social platform implementation
+		GooglePlayGames.PlayGamesPlatform.Activate();
+
 		controlable = false;
 		gameoverbutton.SetActive (true);
 	}
