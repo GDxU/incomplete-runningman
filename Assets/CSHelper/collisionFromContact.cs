@@ -5,7 +5,7 @@ using System.Collections;
 public class collisionFromContact : MonoBehaviour
 {
 
-	normalwalk2 player;
+	controlNormal player;
 	AudioSource asr;
 	Transform t;
 	// Use this for initialization
@@ -27,7 +27,7 @@ public class collisionFromContact : MonoBehaviour
 		if (collision.gameObject.CompareTag ("Player")) {
 			foreach (ContactPoint contact in collision.contacts) {
 				Debug.DrawRay (contact.point, contact.normal, Color.white);
-				player = collision.gameObject.GetComponent<normalwalk2> ();
+				player = collision.gameObject.GetComponent<controlNormal> ();
 				player.exploreFrom (contact.point, contact.normal, 10f);
 			}
 			if (collision.relativeVelocity.magnitude > 0.2f) {

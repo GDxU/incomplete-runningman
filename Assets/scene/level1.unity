@@ -190,9 +190,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentRig: {fileID: 1024808907}
-  distanceAway: 5
+  distanceAway: 3.6400001
   distanceAwayMultipler: 1.5
-  distanceUp: 2.6500001
+  distanceUp: 1.94000006
   surroundDisUp: 2.08999991
   distanceUpMultiplier: 5
   follow: {fileID: 1024808917}
@@ -3350,10 +3350,10 @@ MonoBehaviour:
   omegaHeight: 1.5
   omegaWave: 3.21000004
   amplitudeRotationMultipler: 1
-  bounce: 1
+  bounce: 0
   floatDirection: {x: 0, y: 1, z: 0}
-  locationRotationDirection: {x: 0, y: 1, z: 0}
-  MaxRotationAngle: 4.51999998
+  locationRotationDirection: {x: 0, y: 0, z: 1}
+  MaxRotationAngle: 2.1099999
   cal: 1
   target_transform: {fileID: 1844771054}
 --- !u!54 &1024808909
@@ -3380,10 +3380,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1024808906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 858d4f5fd5357cd4799ae263a73194cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a978ebe81ad2a04ba8141d83d118fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnSpeed: 90
   boxCollider: {fileID: 1024808913}
+  hp: 100
+  autodrive: 0
+  collisionModed: 0
+  debugMoveSpeed: 0
+  speedinternal: .0500000007
+  fire: {fileID: 0}
 --- !u!65 &1024808913
 BoxCollider:
   m_ObjectHideFlags: 0
