@@ -31,6 +31,10 @@ public abstract class baseEarthMove : MonoBehaviour
 	protected float external_control_speed = 1f;
 	protected Transform myTransform;
 	public BoxCollider boxCollider; // drag BoxCollider ref in editor
+	
+	protected abstract void controlDirecitonTurns ();
+
+	protected abstract void checkhp ();
 
 	private void Start ()
 	{
@@ -56,8 +60,6 @@ public abstract class baseEarthMove : MonoBehaviour
 		// apply constant weight force according to character normal:
 		GetComponent<Rigidbody> ().AddForce (-gravity * GetComponent<Rigidbody> ().mass * myNormal);
 	}
-
-	protected abstract void controlDirecitonTurns ();
 
 	private void Update ()
 	{
@@ -97,9 +99,9 @@ public abstract class baseEarthMove : MonoBehaviour
 		// move the character forth/back with Vertical axis:
 		myTransform.Translate (0, 0, getControlSpeedNow () * moveSpeed * Time.deltaTime);
 		//Input.GetAxis ("Vertical") 
-		checkhp();
+		checkhp ();
 	}
-	protected abstract void checkhp();
+
 	public void exploreFrom (Vector3 point, Vector3 normal, float distance)
 	{
 		// jump to wall
