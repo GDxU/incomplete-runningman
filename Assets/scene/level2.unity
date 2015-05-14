@@ -288,7 +288,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11432788, guid: 03c73a792ab8c8f44ad415f7b372fb71, type: 2}
       propertyPath: autodrive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11432788, guid: 03c73a792ab8c8f44ad415f7b372fb71, type: 2}
+      propertyPath: speedinternal
+      value: .00999999978
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 03c73a792ab8c8f44ad415f7b372fb71, type: 2}
@@ -582,7 +586,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11453366, guid: b37e3f8ad9d5f374db1b22c8fbb3c331, type: 2}
       propertyPath: speedinternal
-      value: .100000001
+      value: .00999999978
       objectReference: {fileID: 0}
     - target: {fileID: 11453366, guid: b37e3f8ad9d5f374db1b22c8fbb3c331, type: 2}
       propertyPath: hp
