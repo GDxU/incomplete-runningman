@@ -28,7 +28,7 @@ public abstract class baseEarthMove : MonoBehaviour
 	protected float distGround; // distance from character position to ground
 	protected bool jumping = false; // flag &quot;I'm jumping to wall&quot;
 	protected float vertSpeed = 0; // vertical jump current speed
-	protected float external_control_speed = 1f;
+	protected float external_control_speed;
 	protected Transform myTransform;
 	public BoxCollider boxCollider; // drag BoxCollider ref in editor
 	
@@ -43,6 +43,7 @@ public abstract class baseEarthMove : MonoBehaviour
 		GetComponent<Rigidbody> ().freezeRotation = true; // disable physics rotation
 		// distance from transform.position to ground
 		distGround = boxCollider.extents.y - boxCollider.center.y;
+		external_control_speed = 0;
 	}
 	
 	public void setExternalSpeedCurrent (float e)
@@ -79,7 +80,7 @@ public abstract class baseEarthMove : MonoBehaviour
 			}
 		}
 		
-		controlDirecitonTurns ();
+		controlDirecitonTurns (); //using the turnSpeed to control the direction like Left or Right
 		// update surface normal and isGrounded:
 		ray = new Ray (myTransform.position, -myNormal); // cast ray downwards
 		if (Physics.Raycast (ray, out hit)) { // use it to update myNormal and isGrounded

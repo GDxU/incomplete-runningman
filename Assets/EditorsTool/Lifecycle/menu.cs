@@ -36,7 +36,11 @@ public class menu : MonoBehaviour
 		//one for the start level
 		Application.LoadLevel (1);
 	}
-
+	public void StartLevelsSim()
+	{
+		//one for the start level
+		Application.LoadLevel (2);
+	}
 	public void ExitGame ()
 	{
 		Application.Quit ();

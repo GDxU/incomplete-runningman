@@ -5,8 +5,16 @@ public class controlNormal : baseEarthMove
 {
 	public int hp = 100;
 	public bool autodrive = false, collisionModed = false, debugMoveSpeed = false;
-	public float speedinternal = .05f;
+	public float speedinternal;
+	private float inputsliderdriverfactor = 0;
 	public GameObject fire;
+	public MODE drivingMode = MODE.AUTODRIVE;
+	public enum MODE
+	{
+		AUTODRIVE,
+		KEYBOARD,
+		SLIDERDRIVE
+	}
 //	public float turn_speed{
 //		get{return this.turnSpeed;}
 //		set{this.turnSpeed = value;}
@@ -14,14 +22,25 @@ public class controlNormal : baseEarthMove
 //	protected override void Start (){
 //
 //	}
+	public void inputDirection (float r)
+	{
+		inputsliderdriverfactor = r;
+	}
+
 	protected override void controlDirecitonTurns ()
 	{
-		if (autodrive) {
+		switch (this.drivingMode) {
+		case MODE.AUTODRIVE:
 			myTransform.Rotate (0, turnSpeed * Time.deltaTime, 0);
-		} else {
-			// movement code - turn left/right with Horizontal axis:
+			break;
+		case MODE.KEYBOARD:
 			myTransform.Rotate (0, Input.GetAxis ("Horizontal") * turnSpeed * Time.deltaTime, 0);
+			break;
+		case MODE.SLIDERDRIVE:
+			myTransform.Rotate (0, inputsliderdriverfactor * turnSpeed * Time.deltaTime, 0);
+			break;
 		}
+	
 	}
 
 	protected override void checkhp ()

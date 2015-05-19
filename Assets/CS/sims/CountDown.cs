@@ -5,20 +5,28 @@ using UnityEngine.UI;
 public class CountDown : MonoBehaviour
 {
 	
-	public int timeRemaining = 60;
+	public int timeRemaining;
 	public Text countdown, score;
-	public GameControl thecontrol;
+	private int score_now;
 
 	void Start ()
 	{
-		thecontrol = this.GetComponent<GameControl> ();
-		//countdown = countdown.GetComponent<Text> ();
 		InvokeRepeating ("decreaseTimeRemaining", 1.0F, 1.0F);
 	}
-	
+
+	public void AddScore (int n)
+	{
+		if (score_now == null)
+			score_now = 0;
+
+		score_now += 1;
+	}
+
 	void Update ()
 	{
-		score.text = thecontrol.getScore () + "";
+		if (score_now != null) {
+			score.text = score_now + "";
+		}
 		if (timeRemaining == 0) {
 			SendMessageUpwards ("timeElapsed");
 			timeElapsed ();
@@ -36,8 +44,7 @@ public class CountDown : MonoBehaviour
 	void timeElapsed ()
 	{
 		CancelInvoke ("decreaseTimeRemaining");
-		thecontrol.StopControl ();
-		countdown.text = "-0-";
+		countdown.text = "0";
 	}
 }
 
