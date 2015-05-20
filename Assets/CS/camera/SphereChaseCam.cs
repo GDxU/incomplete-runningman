@@ -145,6 +145,7 @@ public class SphereChaseCam : MonoBehaviour
 		get {
 			return this.camState;
 		}
+		set { this.camState = value;}
 	}
 	
 	public enum CamStates
@@ -323,14 +324,38 @@ public class SphereChaseCam : MonoBehaviour
 			break;
 		case CamStates.AutoSurround:
 			ResetCamera ();
-			//lookDir = followXform.forward;
-			//xAxisRot += (leftY * 0.5f * firstPersonLookSpeed)
-			//lookDir = followXform.forward;
-			//curLookDir = followXform.forward;
-			surroundingm += surroundSpeed;
-			targetPosition = followXform.position + surroundDisUp * (1 + 1 / distanceUpMultiplier) * Vector3.up + Quaternion.Euler (0f, surroundingm, 0f) * followXform.forward * distanceAway;
+
+			//surroundingm += surroundSpeed;
+		//	targetPosition = followXform.position + surroundDisUp * (1 + 1 / distanceUpMultiplier) * Vector3.up + Quaternion.Euler (0f, surroundingm, 0f) * followXform.forward * distanceAway;
+
+			// Damping makes it so we don't update targetPosition while pivoting; camera shouldn't rotate around player
+			//curLookDir = Vector3.SmoothDamp (curLookDir, lookDir, ref velocityLookDir, lookDirDampTime);
+			// Calculate direction from camera to player, kill Y, and normalize to give a valid direction with unit magnitude
+			curLookDir = Vector3.Normalize (characterOffset - this.transform.position);
+			//curLookDir.y = 0;
+
+		
+			Ray r2 = new Ray (offsetCameraFromCharacter (), -followXform.forward);
+			r2.GetPoint (distanceAway);
+			parentRig.RotateAround (offsetCameraFromCharacter (), followXform.up, surroundSpeed * Time.deltaTime);
+
+			float currentMoonDistance = Vector3.Distance (followXform.position, parentRig.position);
+			Vector3 fizxx = (surroundDisUp - currentMoonDistance) * curLookDir;
+			targetPosition = parentRig.position - fizxx;
+
+
+			//transform.RotateAround (followXform.position, followXform.up, surroundingm);
+			Debug.DrawLine (followXform.position, targetPosition, Color.magenta);
+
+		
+			//targetPosition = followXform.position +
+			Debug.DrawRay (followXform.position, followXform.up, Color.red);
+
 			lookAt = followXform.position + distanceUp * Vector3.up;
+			//lookAt = rotation;
 			Debug.DrawLine (followXform.position, targetPosition, Color.white);
+
+			Debug.DrawRay (targetPosition, lookAt, Color.red);
 			break;	
 		case CamStates.FirstPerson:	
 			// Looking up and down
@@ -419,7 +444,7 @@ public class SphereChaseCam : MonoBehaviour
 		SmoothPosition (parentRig.position, targetPosition);
 		//transform.LookAt (lookAt);	eulerAngles
 		transform.LookAt (lookAt);
-		this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, followXform.localEulerAngles.z);
+		this.transform.localEulerAngles = new Vector3 (this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, followXform.localEulerAngles.z);
 		rightStickPrevFrame = new Vector2 (rightX, rightY);
 	}
 
