@@ -8,7 +8,8 @@ public class SpeedControl : MonoBehaviour
 	public Slider speedControlSlider, directionslider;
 	public controlNormal shipcontrolengine;
 	public SphereChaseCam chasecam;
-	public Button a,b;
+	public Button a, b;
+	public float adjustmentSpeed = 5.1f;
 	// Use this for initialization
 	void Start ()
 	{
@@ -17,24 +18,50 @@ public class SpeedControl : MonoBehaviour
 		}
 		if (directionslider != null) {
 			directionslider.onValueChanged.AddListener (onDirectionChange);
-		
-			//	directionslider.OnPointerDown (onDown);
-			//	directionslider.OnPointerUp (onUp);
-		}
-		if(a!=null && chasecam!=null){
-			a.onClick.AddListener(() => clicknormal());
-		}
-		if(b!=null && chasecam!=null){
-			b.onClick.AddListener(() => clicksurround());
 		}
 	}
 
-	private void clicknormal(){
+	private bool releasedSliderUp = false;
+	/**
+	 * to receive the slider up event
+*/
+	public void SlideDrageUp ()
+	{
+		releasedSliderUp = true;
+	}
+
+	public void SliderDragOn ()
+	{
+		releasedSliderUp = false;
+
+	}
+
+	float directionsliderv ;
+
+	private void sliderRuntimeAdjustment ()
+	{
+		if (releasedSliderUp) {
+			float t = Time.deltaTime * adjustmentSpeed;
+			directionsliderv = directionslider.value;
+			directionslider.value = Mathf.SmoothStep (directionsliderv, 0.5f, t);
+		}
+	}
+
+	private void clicknormal ()
+	{
 		chasecam.CamState = SphereChaseCam.CamStates.Behind;
 	}
 
-	private void clicksurround(){
+	private void clicksurround ()
+	{
 		chasecam.CamState = SphereChaseCam.CamStates.AutoSurround;
+	}
+
+	private void onSpeedChange (float val)
+	{
+		if (shipcontrolengine != null) {
+			shipcontrolengine.setExternalSpeedCurrent (val / 100);
+		}
 	}
 
 	private void onDirectionChange (float val)
@@ -43,10 +70,9 @@ public class SpeedControl : MonoBehaviour
 		shipcontrolengine.inputDirection (normal / 0.5f);
 	}
 
-	void update ()
+	void Update ()
 	{
-
-		//	healthSlider.value = h;
+		sliderRuntimeAdjustment ();
 	}
 
 	private void onDown ()
@@ -59,10 +85,5 @@ public class SpeedControl : MonoBehaviour
 		Debug.Log ("up");
 	}
 
-	private void onSpeedChange (float val)
-	{
-		if (shipcontrolengine != null) {
-			shipcontrolengine.setExternalSpeedCurrent (val / 100);
-		}
-	}
+
 }

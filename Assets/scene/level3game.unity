@@ -837,7 +837,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 484155662}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106709}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -845,8 +845,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 0}
+  m_AnchoredPosition: {x: 0, y: 3.4000001}
+  m_SizeDelta: {x: 129.199997, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &484155664
 MonoBehaviour:
@@ -860,8 +860,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .160784319, g: .176470593, b: .376470596, a: 1}
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: .160784319, g: .176470593, b: .376470596, a: .270588249}
+  m_Sprite: {fileID: 21300000, guid: d44b221d28dc95a46a66d81e5cb60964, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1202,6 +1202,7 @@ MonoBehaviour:
   chasecam: {fileID: 316575233}
   a: {fileID: 170774394}
   b: {fileID: 1184791187}
+  adjustmentSpeed: 19.9699993
 --- !u!114 &566510155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1437,6 +1438,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 877968031}
   - 114: {fileID: 877968032}
+  - 114: {fileID: 877968033}
   m_Layer: 5
   m_Name: DIRECTION
   m_TagString: Untagged
@@ -1460,7 +1462,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 6, y: -570}
+  m_AnchoredPosition: {x: 6, y: 123}
   m_SizeDelta: {x: 647.900024, y: 54.9000015}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &877968032
@@ -1486,8 +1488,8 @@ MonoBehaviour:
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
     m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
     m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
-    m_ColorMultiplier: 1.38
-    m_FadeDuration: .100000001
+    m_ColorMultiplier: 3.94000006
+    m_FadeDuration: .670000017
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -1522,6 +1524,54 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &877968033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 877968030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 566510154}
+          m_MethodName: SlideDrageUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 566510154}
+          m_MethodName: SliderDragOn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &883678579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,12 +1994,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .213854089, g: .189716727, b: .889705896, a: .203921571}
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -2290,11 +2340,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 453416, guid: b37e3f8ad9d5f374db1b22c8fbb3c331, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 50.8198662
+      value: 50.8199997
       objectReference: {fileID: 0}
     - target: {fileID: 453416, guid: b37e3f8ad9d5f374db1b22c8fbb3c331, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -.479147255
+      value: -1.04400003
       objectReference: {fileID: 0}
     - target: {fileID: 453416, guid: b37e3f8ad9d5f374db1b22c8fbb3c331, type: 2}
       propertyPath: m_LocalRotation.x
